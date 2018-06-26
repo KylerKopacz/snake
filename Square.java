@@ -9,16 +9,20 @@ public class Square {
     life = 0;
   }
 
-  public boolean getSnake() {
-    return hasSnake;
-  }
-
   public boolean getApple() {
     return hasApple;
   }
 
+  public void setApple(boolean tralse) {
+    hasApple = tralse;
+  }
+
   public void setLife(int newLife) {
     life = newLife;
+  }
+
+  public int getLife() {
+    return life;
   }
 
   public void decrementLife() {

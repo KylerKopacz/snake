@@ -37,23 +37,29 @@ public class Game extends JPanel implements KeyListener {
   }
 
   public void drawSquares(Graphics g) {
-    g.setColor(Color.blue);
     for(int i = 0; i < b.numRows; i++) {
       for(int j = 0; j < b.numCols; j++) {
         if(b.board[i][j].hasLife()) {
+          g.setColor(Color.blue);
           g.fillRect(j*Settings.sqDim, i*Settings.sqDim, Settings.sqDim, Settings.sqDim);
         }
+        if(b.board[i][j].getApple()) {
+          g.setColor(Color.yellow);
+          g.fillRect(j*Settings.sqDim, i*Settings.sqDim, Settings.sqDim, Settings.sqDim);
+        }
+
       }
     }
   }
 
   public void runGame() {
+    b.placeApple();
     while(true) {
       try {
         b.update();
         b.drawBoard();
         repaint();
-        Thread.sleep(1000/4);
+        Thread.sleep(Settings.snakeSpeed);
       } catch(Exception e) {
         //Lol don't do anything
       }

@@ -5,10 +5,10 @@ public class Snake {
   public static int headY;
 
   public Snake() {
-    length = 6;
+    length = 3;
     direction = 2;
-    headX = 5;
-    headY = 5;
+    headX = 0;
+    headY = 0;
   }
 
   public int getFacing() {
@@ -22,8 +22,6 @@ public class Snake {
   public void addLength() {
     length++;
   }
-
-
 
   public void update() {
     switch(direction) {

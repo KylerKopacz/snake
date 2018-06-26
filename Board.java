@@ -50,17 +50,48 @@ public class Board {
     }
 
     snake.update();
+    checkCollisions();
+    checkWin();
+  }
 
+  public void checkWin() {
+    if(snake.getLength() == (numCols*numCols)) {
+      System.out.println("Wow... you won! Congrats!");
+      System.exit(1);
+    }
+  }
+  public void checkCollisions() {
     try {
-      board[snake.headY][snake.headX].setLife(snake.getLength());
+      board[snake.headY][snake.headX].getApple();
     } catch (ArrayIndexOutOfBoundsException e) {
-      System.out.println("Game over!");
+      System.out.println("Game over! Score: " + snake.getLength());
+      System.exit(1);
+    }
+    //checks to see if the snake has hit itself
+    if(board[snake.headY][snake.headX].hasLife() && board[snake.headY][snake.headX].getLife() != snake.getLength()) {
+      System.out.println("Game over! Snake hit body! Score: " + snake.getLength());
       System.exit(1);
     }
 
+    //checks to see if the snake has hit an apple
+    if(board[snake.headY][snake.headX].getApple()) {
+      snake.addLength();
+      placeApple();
+      board[snake.headY][snake.headX].setApple(false);
+    }
+
+    board[snake.headY][snake.headX].setLife(snake.getLength());
   }
 
-  public boolean placeApple() {
-    return false;
+  public void placeApple() {
+    boolean placed = false;
+    while(!placed) {
+      Square s = board[r.nextInt(numRows)][r.nextInt(numCols)];
+      if(s.hasLife() == false) {
+        s.setApple(true);
+        placed = true;
+        System.out.println("Apple placed!");
+      }
+    }
   }
 }

@@ -7,8 +7,8 @@ public class Snake {
   public Snake() {
     length = 3;
     direction = 2;
-    headX = 0;
-    headY = 0;
+    headX = 3;
+    headY = 3;
   }
 
   public int getFacing() {

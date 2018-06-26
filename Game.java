@@ -57,7 +57,7 @@ public class Game extends JPanel implements KeyListener {
     while(true) {
       try {
         b.update();
-        b.drawBoard();
+        //b.drawBoard();
         repaint();
         Thread.sleep(Settings.snakeSpeed);
       } catch(Exception e) {
